@@ -53,6 +53,9 @@ coverage.xml
 docs/_build/
 
 *.sqlite3
-email_info.py
 */migrations
 */live
+
+email_info.py
+apis.py
+
