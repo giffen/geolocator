@@ -13,4 +13,5 @@ urlpatterns = patterns('',
     	'document_root': settings.MEDIA_ROOT}),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'geolocator.views.home', name='home'),
+    url(r'^location/(?P<id>.*)$', 'locations.views.single_location'),
 )

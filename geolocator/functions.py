@@ -9,6 +9,7 @@ def find_place(query):
 	place, (lat, lng) = g.geocode(query)
 	return place, lat, lng
 
+
 def locu_search(query):
 	api = locu_api
 	url = "https://api.locu.com/v1_0/venue/search/?"
@@ -24,9 +25,11 @@ def locu_search(query):
 	locations = []
 
 	for abc in data['objects']:
-		locations.append(abc['name'])
+		list_item = [abc['id'],abc['name']]
+		locations.append(list_item)
 
 	return locations
+
 
 def foursquare_search(query):
 	token = foresquare_token
