@@ -13,6 +13,5 @@ def home(request):
 			new_location, created = Location.objects.get_or_create(name=name, locu_id=locu_id)
 			if created:
 				print "Created new id for %s with id of %s" %(name, locu_id)
-		#locations = foursquare_search(q)
 
 	return render_to_response('home.html', locals(), context_instance=RequestContext(request))

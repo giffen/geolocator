@@ -9,6 +9,23 @@ def find_place(query):
 	place, (lat, lng) = g.geocode(query)
 	return place, lat, lng
 
+def locu_details(locu_id):
+	api = locu_api
+	url = "https://api.locu.com/v1_0/venue/"
+	new_url = url + str(locu_id) + "/?api_key=" + api
+	print new_url
+
+	obj = urllib2.urlopen(new_url)
+	data = json.load(obj)
+
+	details = []
+
+	for abc in data['objects']:
+		details.append(abc['lat'])
+		details.append(abc['long'])
+
+	return details
+
 
 def locu_search(query):
 	api = locu_api
