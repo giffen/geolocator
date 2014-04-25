@@ -2,7 +2,7 @@ import urllib2
 import json
 from geopy.geocoders import GoogleV3
 
-from apis import *
+from apis import foresquare_token, locu_api
 
 def find_place(query):
 	g = GoogleV3()
@@ -48,6 +48,22 @@ def locu_search(query):
 	return locations
 
 
+def foursquare_details(four_id):
+	api = foresquare_token
+	url = "https://api.foursquare.com/v2/venues/"
+	new_url = url + str(four_id) + "?v=20131016&oauth_token=" + api
+	print new_url
+
+	obj = urllib2.urlopen(new_url)
+	data = json.load(obj)
+
+	details = []
+
+	details.append(data['response']['venue']['location']['lat'])
+	details.append(data['response']['venue']['location']['lng'])
+
+	return details
+
 def foursquare_search(query):
 	token = foresquare_token
 
@@ -64,6 +80,6 @@ def foursquare_search(query):
 	locations = []
 
 	for abc in data['response']['venues']:
-		locations.append(abc['name'])
+		locations.append([abc['id'],abc['name']])
 		
 	return locations
