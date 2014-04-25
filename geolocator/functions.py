@@ -4,10 +4,19 @@ from geopy.geocoders import GoogleV3
 
 from apis import foresquare_token, locu_api
 
+def find_city_lat_lng(lat, lng):
+	g = GoogleV3()
+	find = "%s %s" %(lat, lng)
+	place, (lat, lng) = g.geocode(find)
+	full_address = place.split(', ')
+	city = full_address[1]
+	return str(city)
+
 def find_place(query):
 	g = GoogleV3()
 	place, (lat, lng) = g.geocode(query)
 	return place, lat, lng
+
 
 def locu_details(locu_id):
 	api = locu_api
@@ -25,7 +34,6 @@ def locu_details(locu_id):
 		details.append(abc['long'])
 
 	return details
-
 
 def locu_search(query):
 	api = locu_api
